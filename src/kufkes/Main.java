@@ -21,10 +21,11 @@ public class Main {
 //
 //        System.out.println(pm.ToString());
 
-        pm.programs[0].addCourse("Rollercoasters", "RCST-99");
-        pm.programs[0].addCourse("Canons", "CNNS-98");
+        pm.programs[0].addCourse("Rollercoasters", "RCST-99", 50);
+        pm.programs[0].addCourse("Canons", "CNNS-98", 50);
+        pm.programs[0].courses[0].addTask("Assignment 01", 1.2);
 
-        System.out.println(pm.programs[0].toString());
+        System.out.println(pm.ToString());
 
 
 

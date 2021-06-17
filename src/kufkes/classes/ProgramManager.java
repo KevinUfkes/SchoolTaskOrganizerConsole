@@ -45,7 +45,6 @@ public class ProgramManager {
     public String ToString(){
         String s = "Program List: ";
         for(int x=0; x<numPrograms; x++){
-            s += "\n----------";
             s += programs[x].toString();
             s += "\n----------";
         }

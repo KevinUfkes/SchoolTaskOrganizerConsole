@@ -4,7 +4,7 @@ public class Program {
     private int id;
     private String name;
     private String code;
-    private Course [] courses;
+    public Course [] courses;
     private int maxCourses;
     private int numCourses;
     private int courseIdSeed;
@@ -18,9 +18,9 @@ public class Program {
         courses = new Course[maxCourses];
     }
 
-    public boolean addCourse(String name, String code){
+    public boolean addCourse(String name, String code, int maxTasks){
         if(numCourses<maxCourses){
-            courses[numCourses] = new Course(courseIdSeed, name, code);
+            courses[numCourses] = new Course(courseIdSeed, name, code, maxTasks);
             numCourses++;
             courseIdSeed++;
             return true;
