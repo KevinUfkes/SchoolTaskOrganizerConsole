@@ -1,53 +1,42 @@
 package kufkes.classes;
 
+import kufkes.classes.LinkedList.LLNode;
+import kufkes.classes.LinkedList.LinkedList;
+
 public class ProgramManager {
-    public Program [] programs;
-    private int maxPrograms;
-    private int numPrograms;
+
     private int programIdSeed;
+    private LinkedList<Program> programs;
 
-    public ProgramManager(int maxPrograms){
-        this.maxPrograms = maxPrograms;
-        programs = new Program [maxPrograms];
-        numPrograms = 0;
+    public ProgramManager(){
         this.programIdSeed = 1000;
+        this.programs = new LinkedList<Program>();
     }
 
-    public boolean addProgram(String name, String code, int maxCourses){
-        if(numPrograms < maxPrograms){
-            programs[numPrograms] = new Program(programIdSeed, name, code, maxCourses);
-            numPrograms++;
-            programIdSeed++;
-            return true;
+    public void addProgram(String name, String code){
+        Program tempProgram = new Program(programIdSeed, name, code);
+        programs.addFront(tempProgram);
+        programIdSeed++;
+    }
+
+    public Program getProgramById(int id){
+        if(programs.head==null){
+            return null;
         }
-        return false;
-    }
 
-    public boolean deleteProgram(int id){
-        int loc = search(id);
-        if(loc!=-1){
-            programs[loc] = programs[numPrograms];
-            numPrograms--;
-            return true;
+        LLNode<Program> curr = programs.head;
+        while(curr!=null && curr.data.getId()!=id){
+            curr = curr.next;
         }
-        return false;
-    }
-
-    private int search(int id){
-        for(int x=0; x<numPrograms; x++){
-            if (id == programs[x].getId()) {
-                return x;
-            }
+        if(curr==null){
+            return null;
         }
-        return -1;
+        return curr.data;
     }
 
-    public String ToString(){
+    public String toString(){
         String s = "Program List: ";
-        for(int x=0; x<numPrograms; x++){
-            s += programs[x].toString();
-            s += "\n----------";
-        }
+        s += programs.printList();
         return s;
     }
 }

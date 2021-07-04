@@ -1,32 +1,39 @@
 package kufkes.classes;
 
+import kufkes.classes.LinkedList.LLNode;
+import kufkes.classes.LinkedList.LinkedList;
+
+import java.util.Date;
+
 public class Course {
     private int id;
     private String name;
     private String code;
-    public Task [] tasks;
-    private int maxTasks;
-    private int numTasks;
+    public LinkedList<Task> tasks;
     private int taskIdSeed;
 
     public Course(int id, String name, String code, int maxTasks){
         this.id = id;
         this.name = name;
         this.code = code;
-        this.maxTasks = maxTasks;
-        this.tasks = new Task [maxTasks];
-        this.numTasks = 0;
         this.taskIdSeed = 3000;
+
+        this.tasks = new LinkedList<Task>();
     }
 
-    public boolean addTask(String name, double weight){
-        if(numTasks<maxTasks){
-            tasks[numTasks] = new Task(taskIdSeed, name, weight);
-            numTasks++;
-            taskIdSeed++;
-            return true;
-        }
-        return false;
+    public Course(int id, String name, String code){
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.taskIdSeed = 3000;
+
+        this.tasks = new LinkedList<Task>();
+    }
+
+    public void addTask(String name, double weight, Date dueDate){
+        Task tempTask = new Task(taskIdSeed, name, weight, dueDate);
+        tasks.addFront(tempTask);
+        taskIdSeed++;
     }
 
     public int getId() {
@@ -49,16 +56,29 @@ public class Course {
         this.code = code;
     }
 
+    public Task getTaskById(int id){
+        if(this.tasks.head==null){
+            return null;
+        }
+
+        LLNode<Task> curr = tasks.head;
+        while(curr!=null && curr.data.getId()!= id){
+            curr = curr.next;
+        }
+        if(curr==null){
+            return null;
+        }
+        return curr.data;
+
+    }
+
     public String toString(){
         String s = "";
         s += "\n\tID: " + this.id;
         s += "\n\tName: " + this.name;
         s += "\n\tCode: " + this.code;
         s += "\n\tTasks: ";
-        for(int x=0; x<numTasks; x++){
-            s += tasks[x].toString();
-        }
-        s += "\n";
+        s += tasks.printList();
         return s;
     }
 }

@@ -1,31 +1,44 @@
 package kufkes.classes;
 
+import kufkes.classes.LinkedList.LLNode;
+import kufkes.classes.LinkedList.LinkedList;
+
 public class Program {
     private int id;
     private String name;
     private String code;
-    public Course [] courses;
-    private int maxCourses;
-    private int numCourses;
+    private LinkedList<Course> courses;
     private int courseIdSeed;
 
-    public Program(int id, String name, String code, int maxCourses){
+    public Program(int id, String name, String code){
         this.id = id;
         this.name = name;
         this.code = code;
-        this.maxCourses = maxCourses;
-        courseIdSeed = 2000;
-        courses = new Course[maxCourses];
+        this.courseIdSeed = 2000;
+        this.courses = new LinkedList<Course>();
     }
 
-    public boolean addCourse(String name, String code, int maxTasks){
-        if(numCourses<maxCourses){
-            courses[numCourses] = new Course(courseIdSeed, name, code, maxTasks);
-            numCourses++;
-            courseIdSeed++;
-            return true;
+    public void addCourse(String name, String code){
+        Course tempCourse = new Course(courseIdSeed, name, code);
+        courses.addFront(tempCourse);
+        courseIdSeed++;
+    }
+
+    public Course getCourseById(int id){
+        if(this.courses.head==null){
+            return null;
         }
-        return false;
+
+        LLNode<Course> curr;
+        curr = courses.head;
+        while(curr!=null && curr.data.getId()!=id){
+            curr = curr.next;
+        }
+        if(curr==null){
+            return null;
+        }
+        return curr.data;
+
     }
 
     public int getId(){
@@ -54,13 +67,7 @@ public class Program {
         s += "\nName: " + this.name;
         s += "\nCode: " + this.code;
         s += "\nCourses: ";
-        if(numCourses>0){
-            for(int x=0; x<numCourses; x++){
-                s += courses[x].toString();
-            }
-        } else{
-            s += "\tNo Courses";
-        }
+        s += courses.printList();
 
         return s;
     }

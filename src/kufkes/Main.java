@@ -1,56 +1,36 @@
 package kufkes;
 
-import kufkes.classes.LinkedList.LinkedList;
+import kufkes.classes.Course;
 import kufkes.classes.Program;
 import kufkes.classes.ProgramManager;
+import kufkes.classes.Task;
 
-import java.util.List;
+
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-//        ProgramManager pm = new ProgramManager(10);
-//
-//        pm.addProgram("Physics", "PHYS-100", 50);
-//        pm.addProgram("Blacksmithing", "BLSM-201",50);
-//
-////        System.out.println(pm.ToString());
-//
-//        pm.addProgram("Building Destruction", "BDSC-999", 50);
-//
-////        System.out.println(pm.ToString());
-////
-////        pm.deleteProgram(1002);
-////
-////        System.out.println(pm.ToString());
-//
-//        pm.programs[0].addCourse("Rollercoasters", "RCST-99", 50);
-//        pm.programs[0].addCourse("Canons", "CNNS-98", 50);
-//        pm.programs[0].courses[0].addTask("Assignment 01", 15.0);
-//        pm.programs[0].courses[0].addTask("Assignment 02", 20.0);
-//
-//        System.out.println(pm.ToString());
+        //Date for Tests
+        String tempDateString;
 
-        LinkedList<Integer> intLL = new LinkedList<Integer>();
-        LinkedList<Double> dblLL = new LinkedList<Double>();
-        LinkedList<Program> prgmLL = new LinkedList<Program>();
+        tempDateString = "10-07-2021 11:59:59";
 
-        intLL.addFront(34);
-        intLL.addFront(32);
-        intLL.addFront(345);
-        intLL.addFront(176);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date date = formatter.parse(tempDateString);
 
-        dblLL.addFront(34.1);
-        dblLL.addFront(33.6);
-        dblLL.addFront(42.4);
-        dblLL.addFront(89.3);
+        // Linked List implementation test
+        ProgramManager pm01 = new ProgramManager();
+        pm01.addProgram("Fruit Proficiency", "FP - 607");
+        Program fruitProficiency = pm01.getProgramById(1000);
+        fruitProficiency.addCourse("Intro to Apple Peeling", "IAPP-999");
+        Course introAppPeeling = pm01.getProgramById(1000).getCourseById(2000);
+        introAppPeeling.addTask("Peeling Race 1", 100.0, date);
 
-        Program p = new Program(666, "Physics", "PHYS-100", 45);
-        prgmLL.addFront(p);
+        System.out.println(pm01.toString());
 
-        System.out.println(intLL.printList());
-        System.out.println(dblLL.printList());
-        System.out.println(prgmLL.printList());
     }
 }

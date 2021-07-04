@@ -1,7 +1,7 @@
 package kufkes.classes.LinkedList;
 
 public class LinkedList<T> {
-    LLNode<T> head;
+    public LLNode<T> head;
 
     public LinkedList(){
         this.head = null;
