@@ -22,7 +22,7 @@ public class LinkedList<T> {
         LLNode<T> curr;
         curr = head;
         while(curr!=null){
-            s += curr.data + ", ";
+            s += curr.data;
             curr = curr.next;
         }
         return s;

@@ -8,7 +8,7 @@ public class Program {
     private String name;
     private String code;
     private LinkedList<Course> courses;
-    private int courseIdSeed;
+    private static int courseIdSeed;
 
     public Program(int id, String name, String code){
         this.id = id;
@@ -38,7 +38,6 @@ public class Program {
             return null;
         }
         return curr.data;
-
     }
 
     public int getId(){
@@ -59,6 +58,10 @@ public class Program {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public LinkedList<Course> getCourses() {
+        return courses;
     }
 
     public String toString(){

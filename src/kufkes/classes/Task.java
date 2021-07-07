@@ -17,6 +17,20 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public Task(int id, String name, double weight, boolean isAssigned, Date dueDate){
+        this.id = id;
+        this.name = name;
+        this.weight = weight;
+        this.isAssigned = isAssigned;
+        this.dueDate = dueDate;
+    }
+
+    public Task(Task that){
+        this(that.getId(), that.getName(), that.getWeight(), that.getIsAssigned(), that.getDueDate());
+    }
+
+
+
     public int getId() {
         return id;
     }
@@ -37,11 +51,11 @@ public class Task {
         this.weight = weight;
     }
 
-    public boolean isAssigned() {
+    public boolean getIsAssigned() {
         return isAssigned;
     }
 
-    public void setAssigned(boolean assigned) {
+    public void setIsAssigned(boolean assigned) {
         isAssigned = assigned;
     }
 
@@ -54,7 +68,7 @@ public class Task {
     }
 
     public String toString(){
-        String s = "";
+        String s = "\n\t\t-----";
         s += "\n\t\tID: " + this.id;
         s += "\n\t\tName: " + this.name;
         s += "\n\t\tWeight: " + this.weight;

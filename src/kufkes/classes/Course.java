@@ -10,7 +10,7 @@ public class Course {
     private String name;
     private String code;
     public LinkedList<Task> tasks;
-    private int taskIdSeed;
+    private static int taskIdSeed;
 
     public Course(int id, String name, String code, int maxTasks){
         this.id = id;
@@ -54,6 +54,10 @@ public class Course {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public LinkedList<Task> getTasks() {
+        return tasks;
     }
 
     public Task getTaskById(int id){
