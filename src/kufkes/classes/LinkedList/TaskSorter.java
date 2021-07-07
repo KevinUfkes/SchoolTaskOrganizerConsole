@@ -4,6 +4,8 @@ import kufkes.classes.Course;
 import kufkes.classes.Program;
 import kufkes.classes.Task;
 
+import java.util.Date;
+
 public class TaskSorter {
 
     public TaskSorter(){
@@ -32,13 +34,15 @@ public class TaskSorter {
                     LLNode<Task> tempTaskNode = new LLNode<>(taskByDateTemp);
                     tempTaskNode.next = null;
 
-                    if(tasksByDate.head==null || (tasksByDate.head.data.getDueDate().after(tempTaskNode.data.getDueDate()) || tasksByDate.head.data.getDueDate().equals(tempTaskNode.data.getDueDate()))){
+                    Date tempDateTempNode = tempTaskNode.data.getDueDate();
+
+                    if(tasksByDate.head==null || (tasksByDate.head.data.getDueDate().after(tempDateTempNode) || tasksByDate.head.data.getDueDate().equals(tempDateTempNode))){
                         tempTaskNode.next = tasksByDate.head;
                         tasksByDate.head = tempTaskNode;
                     } else{
                         LLNode<Task> tasksByDateCurr, tasksByDatePrev;
                         tasksByDateCurr = tasksByDatePrev = tasksByDate.head;
-                        while(tasksByDateCurr!=null && (tasksByDateCurr.data.getDueDate().before(tempTaskNode.data.getDueDate()) || tasksByDate.head.data.getDueDate().equals(tempTaskNode.data.getDueDate()))){
+                        while(tasksByDateCurr!=null && (tasksByDateCurr.data.getDueDate().before(tempDateTempNode) || tasksByDate.head.data.getDueDate().equals(tempDateTempNode))){
                             tasksByDatePrev = tasksByDateCurr;
                             tasksByDateCurr = tasksByDateCurr.next;
                         }
