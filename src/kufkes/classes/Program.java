@@ -24,6 +24,23 @@ public class Program {
         courseIdSeed++;
     }
 
+    public boolean deleteCourseById(int id){
+        if(this.courses.head==null){
+            return false;
+        }
+        LLNode<Course> curr, prev;
+        curr = prev = courses.head;
+        while(curr!=null && curr.data.getId()!=id){
+            prev = curr;
+            curr = curr.next;
+        }
+        if(curr==null){
+            return false;
+        }
+        prev.next = curr.next;
+        return true;
+    }
+
     public Course getCourseById(int id){
         if(this.courses.head==null){
             return null;

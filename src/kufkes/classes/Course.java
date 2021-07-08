@@ -36,8 +36,6 @@ public class Course {
         taskIdSeed++;
     }
 
-
-
     public int getId() {
         return id;
     }

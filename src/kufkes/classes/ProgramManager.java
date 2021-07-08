@@ -21,6 +21,23 @@ public class ProgramManager {
         programIdSeed++;
     }
 
+    public boolean deleteProgramById(int id){
+        if(this.programs.head==null){
+            return false;
+        }
+        LLNode<Program> curr, prev;
+        curr = prev = programs.head;
+        while(curr!=null && curr.data.getId()!=id){
+            prev = curr;
+            curr = curr.next;
+        }
+        if(curr==null){
+            return false;
+        }
+        prev.next = curr.next;
+        return true;
+    }
+
     public Program getProgramById(int id){
         if(programs.head==null){
             return null;
@@ -43,50 +60,6 @@ public class ProgramManager {
     public String tasksByWeight(){
         return taskSorter.tasksByWeight(programs);
     }
-
-//    public String tasksByDate(){
-//        LinkedList<Task>tasksByDate = new LinkedList<>();
-//        LLNode<Program> programCurr;
-//        programCurr = programs.head;
-//        if(programs.head==null){
-//            return null;
-//        }
-//        while(programCurr!=null){
-//            LLNode<Course> courseCurr;
-//            courseCurr = programCurr.data.getCourses().head;
-//
-//            while(courseCurr!=null){
-//                LLNode<Task> taskCurr;
-//                taskCurr = courseCurr.data.getTasks().head;
-//
-//                while(taskCurr!=null){
-//
-//                    Task taskByDateTemp ;
-//                    taskByDateTemp = new Task(taskCurr.data);
-//                    LLNode<Task> tempTaskNode = new LLNode<>(taskByDateTemp);
-//                    tempTaskNode.next = null;
-//
-//                    if(tasksByDate.head==null || (tasksByDate.head.data.getDueDate().after(tempTaskNode.data.getDueDate()) || tasksByDate.head.data.getDueDate().equals(tempTaskNode.data.getDueDate()))){
-//                        tempTaskNode.next = tasksByDate.head;
-//                        tasksByDate.head = tempTaskNode;
-//                    } else{
-//                        LLNode<Task> tasksByDateCurr, tasksByDatePrev;
-//                        tasksByDateCurr = tasksByDatePrev = tasksByDate.head;
-//                        while(tasksByDateCurr!=null && (tasksByDateCurr.data.getDueDate().before(tempTaskNode.data.getDueDate()) || tasksByDate.head.data.getDueDate().equals(tempTaskNode.data.getDueDate()))){
-//                            tasksByDatePrev = tasksByDateCurr;
-//                            tasksByDateCurr = tasksByDateCurr.next;
-//                        }
-//                            tasksByDatePrev.next = tempTaskNode;
-//                            tempTaskNode.next = tasksByDateCurr;
-//                    }
-//                    taskCurr = taskCurr.next;
-//                }
-//                courseCurr = courseCurr.next;
-//            }
-//            programCurr = programCurr.next;
-//        }
-//        return tasksByDate.printList();
-//    }
 
     public String toString(){
         String s = "Program List: ";
