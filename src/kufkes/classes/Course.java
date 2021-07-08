@@ -36,6 +36,8 @@ public class Course {
         taskIdSeed++;
     }
 
+
+
     public int getId() {
         return id;
     }
@@ -58,6 +60,23 @@ public class Course {
 
     public LinkedList<Task> getTasks() {
         return tasks;
+    }
+
+    public boolean deleteTaskById(int id){
+        if(this.tasks.head==null){
+            return false;
+        }
+        LLNode<Task> curr, prev;
+        curr = prev = tasks.head;
+        while(curr!=null && curr.data.getId()!=id){
+            prev = curr;
+            curr = curr.next;
+        }
+        if(curr==null){
+            return false;
+        }
+        prev.next = curr.next;
+        return true;
     }
 
     public Task getTaskById(int id){

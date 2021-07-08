@@ -1,6 +1,8 @@
-package kufkes.classes.LinkedList;
+package kufkes.classes;
 
 import kufkes.classes.Course;
+import kufkes.classes.LinkedList.LLNode;
+import kufkes.classes.LinkedList.LinkedList;
 import kufkes.classes.Program;
 import kufkes.classes.Task;
 

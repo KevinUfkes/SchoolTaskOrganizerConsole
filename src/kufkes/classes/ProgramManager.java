@@ -2,7 +2,6 @@ package kufkes.classes;
 
 import kufkes.classes.LinkedList.LLNode;
 import kufkes.classes.LinkedList.LinkedList;
-import kufkes.classes.LinkedList.TaskSorter;
 
 public class ProgramManager {
 
