@@ -53,12 +53,17 @@ public class ProgramManager {
         return curr.data;
     }
 
-    public String tasksByDate(){
-        return taskSorter.tasksByDate(programs);
+    public String tasksByDateAssigned(){
+        return taskSorter.tasksByDate(programs, false);
+    }
+    public String tasksByDateAll(){ return taskSorter.tasksByDate(programs, true); }
+
+    public String tasksByWeightAssigned(){
+        return taskSorter.tasksByWeight(programs, false);
     }
 
-    public String tasksByWeight(){
-        return taskSorter.tasksByWeight(programs);
+    public String tasksByWeightAll(){
+        return taskSorter.tasksByWeight(programs, true);
     }
 
     public String toString(){

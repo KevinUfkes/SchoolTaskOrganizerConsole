@@ -58,11 +58,12 @@ public class Main {
 
         System.out.println("######################################");
         System.out.println("Tasks by Weight:");
-        System.out.println(pm01.tasksByWeight());
+        System.out.println(pm01.tasksByWeightAll());
 
         System.out.println(introAppPeeling.deleteTaskById(3001));
         introAppPeeling.getTaskById(3002).setName("Coring Race 1");
         introAppPeeling.getTaskById(3002).setIsAssigned(true);
+        introAppPeeling.getTaskById(3004).setIsAssigned(true);
 
         System.out.println(fruitProficiency.deleteCourseById(2001));
         fruitProficiency.getCourseById(2000).setName("Introduction to Apple Peeling");
@@ -70,10 +71,12 @@ public class Main {
 
 
         System.out.println("######################################");
-        System.out.println("Tasks by Due Date:");
-        System.out.println(pm01.tasksByDate());
+        System.out.println("Assigned Tasks by Due Date:");
+        System.out.println(pm01.tasksByDateAssigned());
+        System.out.println("**********************");
+        System.out.println(pm01.tasksByDateAll());
 
-        System.out.println(pm01);
+//        System.out.println(pm01);
 
     }
 }
